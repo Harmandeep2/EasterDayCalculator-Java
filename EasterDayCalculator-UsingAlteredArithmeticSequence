@@ -1,0 +1,62 @@
+/*
+ * The purpose of this program is to determine the date of Easter using an arithmetic procedure.
+ * A procedure was given in the content but this is a program showcases a different (one of) way to determine the exact date.
+ */
+package eastervariation2;
+
+    /**
+     * Name: Harmandeep Arneja
+     * Date: 11/3/2022
+     * Course Code: ICS 4U1
+     * Program: Exact Easter Day Calculator Variation 
+     */
+
+// Imports a package that will provide interface that enables the development of input methods that can be used with Java RE.
+import javax.swing.*;
+
+public class EasterVariation2 {
+    public static void main(String[] args) {
+        
+        // These are all the variables needed for the quotients and remainders needed
+     	int a, b, c, d, q, f, g, h, j, k, n;
+        int p;      // Used in the final calculation to determine the day
+    	int month;  // To calculate Easter month
+     	int day;    // To calculate Easter day
+     	int year;   // Easter's year
+	String monthStr; // Declaring a string that will output the month
+
+    	// Declaring a string variable and asking the user for the year
+     	String yearStr = JOptionPane.showInputDialog("Easter " +" Date Calculator\nPlease enter a year"); // Prompts the message and \n is used to separate the 2 lines
+
+     	// Converts the year from a String variable (from the user) to an integer value
+     	year = Integer.parseInt(yearStr);
+
+	//Calculations to determine the date
+	a = year / 100;
+	b = year % 100;
+	c = 3 * (a+25) / 4;
+	d = 3 * (a+25) % 4;
+	q = 8 * (a+11) / 25;
+	f = ((5*a) + b) % 19;
+	g = ((19*f) + c - q) % 30;
+	h = (f + (11*g)) / 319;
+	j = ((60 *(5-d)) + b) / 4;
+	k = ((60 *(5-d)) + b) % 4;
+	n = ((2*j)- k - g + h) % 7;
+        month = (g - h + n + 114)/ 31; // final calculation uses all other claculations to determine the month.
+	p = (g - h + n + 114) % 31;  // Determines the value of p which is the remainder of the month calculation.
+	day = (p + 1) / 1;  // final calculation uses all other claculations to determine the day.
+
+    	// Determine the month in String format. The months can either be March or April depending on the month value.
+    	if(month == 3){
+            monthStr = "March";
+     	} else {
+            monthStr = "April";
+     	}
+
+    	//Display the results to the user
+     	JOptionPane.showMessageDialog(null, "Easter will fall" + " on Sunday, "+monthStr+" "+day+", "+year); 
+        
+    }
+    
+}
